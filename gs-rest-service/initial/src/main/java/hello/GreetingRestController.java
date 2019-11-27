@@ -46,4 +46,10 @@ public class GreetingRestController {
             return new ResponseEntity<String>("Non!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @RequestMapping(value = "/hidden", method = RequestMethod.GET)
+    public Greeting hiddengreeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),
+                String.format(template, name));
+    }
 }
